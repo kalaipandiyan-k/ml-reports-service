@@ -1,0 +1,91 @@
+## This section has mandatory variables
+## You must provide a value for these
+## If you don't provide a value for these variables, the chart installation will not proceed
+
+## The domain name or Public IP address
+## The domain name should start with http or https
+## For example https://example.com
+
+
+## This section has variables with default values
+## These are standard defaults that work well
+## You can override these if you have a use case for it
+APPLICATION_ENV: staging
+APPLICATION_PORT: "3000"
+CONTENT_REPORT_THRESHOLD: "5"
+DRUID_URL: http://11.3.2.25:8082
+ENTITY_SCORE_REPORT_THRESHOLD: "5"
+EVIDENCE_THRESHOLD: "3"
+GOTENBERG_URL: http://gotenberg-service:3000
+INTERNAL_ACCESS_TOKEN: e7220b7539363210ed15
+KEYCLOAK_PUBLIC_KEY_PATH: keycloak-public-keys
+ML_CORE_SERVICE_URL: http://ml-core-service:3000
+ML_SURVEY_SERVICE_URL: http://ml-survey-service:3000
+OBSERVATION_DATASOURCE_NAME: sl-observation
+OBSERVATION_EVIDENCE_DATASOURCE_NAME: sl-observation-evidence
+OBSERVATION_SCORE_REPORT_THRESHOLD: "2"
+SURVEY_DATASOURCE_NAME: sl-survey
+SURVEY_EVIDENCE_DATASOURCE_NAME: sl-survey-evidence
+
+ml_reports_access_basepath: /opt/reports/keycloak-public-keys/
+
+external_secrets:
+  access-keys:
+    Name: access-keys
+
+## Variables with empty values
+## The value for these variables will be contstucted using other variables
+## If you provide a value to the variable, then that will take the highest precedence
+## It's recommended to leave these blanks unless you have a strong use case to override them
+
+## Set this value to true when developing the chart
+local_chart_development: true
+
+
+## This section has other kubernetes variables
+## These are standard defaults that work well
+## You can override these if you have a use case for it
+image:
+  registry: docker.io
+  repository: ssksanthosh/ml_report_service
+  tag: release-5.0.0
+
+replicaCount: 1
+
+strategy:
+  maxSurge: 25%
+  maxUnavailable: 25%
+
+imagePullSecrets: ""
+
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 100M
+  limits:
+    cpu: 1
+    memory: 1G
+
+port: 3000
+
+targetPort: 3000
+
+livenessProbe:
+  failureThreshold: 2
+  httpGet:
+      path: /service/health
+      port: 3000
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 5
+
+readinessProbe:
+  failureThreshold: 2
+  httpGet:
+      path: /service/health
+      port: 3000
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 5
+
