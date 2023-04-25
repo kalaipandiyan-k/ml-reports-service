@@ -1,0 +1,23 @@
+
+ 
+
+## This section has mandatory variables
+## You must provide a value for these
+## If you don't provide a value for these variables, the chart installation will not proceed
+
+## The domain name or Public IP address
+## The domain name should start with http or https
+## For example https://example.com
+domain: "https://example.com"
+
+
+
+
+## This section has optional variables
+## If you provide a value to the variable, then that will have the highest precedence
+## If you don't provide a value, then it's auto generated
+
+
+## This section has optional variables
+## If you provide a value to the variable, then that will have the highest precedence
+## If you don't provide a value, then it's fetched from another object
