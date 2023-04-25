@@ -10,9 +10,10 @@
 ## This section has variables with default values
 ## These are standard defaults that work well
 ## You can override these if you have a use case for it
+
 APPLICATION_ENV: staging
 APPLICATION_PORT: "3000"
-CONTENT_REPORT_THRESHOLD: "5"
+CONTENT_REPORT_THRESHOLD: "6"
 DRUID_URL: http://11.3.2.25:8082
 ENTITY_SCORE_REPORT_THRESHOLD: "5"
 EVIDENCE_THRESHOLD: "3"
@@ -29,22 +30,6 @@ SURVEY_EVIDENCE_DATASOURCE_NAME: sl-survey-evidence
 
 ml_reports_access_basepath: /opt/reports/keycloak-public-keys/
 
-external_secrets:
-  access-keys:
-    Name: access-keys
-
-## Variables with empty values
-## The value for these variables will be contstucted using other variables
-## If you provide a value to the variable, then that will take the highest precedence
-## It's recommended to leave these blanks unless you have a strong use case to override them
-
-## Set this value to true when developing the chart
-local_chart_development: true
-
-
-## This section has other kubernetes variables
-## These are standard defaults that work well
-## You can override these if you have a use case for it
 image:
   registry: docker.io
   repository: ssksanthosh/ml_report_service
